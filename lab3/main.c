@@ -3,7 +3,7 @@
 #include <time.h>
 
 
-long long three_sum_On3(const int *values, int n) {
+long long three_sum_basic(const int *values, int n) {
     long long count = 0;
 
     return count;
@@ -16,7 +16,7 @@ int compare_ints(const void *first, const void *second) {
     return (a > b) - (a < b);
 }
 
-long long three_sum_On2(int *values, int n) {
+long long three_sum_optimized(int *values, int n) {
     qsort(values, n, sizeof(int), compare_ints);
 
     long long count = 0;
@@ -25,7 +25,7 @@ long long three_sum_On2(int *values, int n) {
 }
 
 int main(void) {
-    const int n = 1000;
+    const int n = 100;
     int *values = malloc(n * sizeof(*values));
 
     if (values == NULL) {
@@ -42,24 +42,24 @@ int main(void) {
 
 
 
-    // clock_gettime(CLOCK_MONOTONIC, &start);
-    // long long on3_count = three_sum_On3(values, n);
-    // clock_gettime(CLOCK_MONOTONIC, &end);
-    //
-    // elapsed = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
-    //
-    // printf("on3_count: %lld\n", on3_count);
-    // printf("Time: %.6f milliseconds\n", elapsed * 1000);
+    clock_gettime(CLOCK_MONOTONIC, &start);
+    long long on3_count = three_sum_basic(values, n);
+    clock_gettime(CLOCK_MONOTONIC, &end);
+
+    elapsed = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+
+    printf("on3_count: %lld\n", on3_count);
+    printf("Time: %.6f milliseconds\n", elapsed * 1000);
 
 
 
-    // clock_gettime(CLOCK_MONOTONIC, &start);
-    // long long on2_count = three_sum_On2(values, n);
-    // clock_gettime(CLOCK_MONOTONIC, &end);
-    //
-    // elapsed = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
-    // printf("on2_count: %lld\n", on2_count);
-    // printf("Time: %.6f milliseconds\n", elapsed * 1000);
+    clock_gettime(CLOCK_MONOTONIC, &start);
+    long long on2_count = three_sum_optimized(values, n);
+    clock_gettime(CLOCK_MONOTONIC, &end);
+
+    elapsed = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+    printf("on2_count: %lld\n", on2_count);
+    printf("Time: %.6f milliseconds\n", elapsed * 1000);
 
 
 
