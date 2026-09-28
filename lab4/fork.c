@@ -3,8 +3,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-int main(void)
-{
+int main(void) {
     pid_t pid;
     int num;
 
