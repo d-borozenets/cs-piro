@@ -1,19 +1,5 @@
 #define _POSIX_C_SOURCE 200809L
 
-/*
- * Lab 7: Thread synchronization. Complete solution for Linux / WSL.
- * Build: gcc -std=c11 -O2 -Wall -Wextra -pthread lab7_solution.c -o lab7
- * Run:   ./lab7 [iterations_per_thread]
- *
- * The first example intentionally contains a data race (undefined behavior
- * in C). volatile does NOT make it safe: it only helps keep the repeated
- * memory accesses visible in this educational example. A correct result
- * in one run does not prove correctness. Its time is not a valid performance
- * baseline for correct implementations.
- *
- * sem_init(..., 0, ...) creates an unnamed semaphore shared by threads.
- * This example targets Linux / WSL; macOS does not support sem_init.
- */
 
 #include <errno.h>
 #include <limits.h>
