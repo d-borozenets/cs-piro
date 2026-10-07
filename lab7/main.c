@@ -21,7 +21,7 @@ double get_time_in_seconds(void);
 static void print_result(const char *name, long long actual, double seconds);
 
 
-static long long iterations = 1000000;
+static long long iterations = 10000;
 static volatile long long unsafe_counter;
 static long long mutex_counter;
 static atomic_llong atomic_counter;
