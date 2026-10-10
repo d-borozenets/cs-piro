@@ -33,7 +33,6 @@ void print_distribution(const char *name, const int owners[], const double parts
     printf("Demo pi: %.15f\n", pi);
 }
 
-/* This demonstration is separate from the timed calculations. */
 void show_distribution(int chunk) {
     int owners[DEMO_N];
     double parts[DEMO_N];

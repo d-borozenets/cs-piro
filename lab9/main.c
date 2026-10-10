@@ -6,7 +6,6 @@ double pi_sequential(long long n) {
     return 0.0;
 }
 
-/* requested_threads має бути між 1 та MAX_THREADS. */
 double pi_parallel(long long n, int requested_threads, int *used_threads) {
     double partial_sums[MAX_THREADS] = {0.0};
 
