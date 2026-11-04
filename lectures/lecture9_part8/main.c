@@ -2,6 +2,9 @@
 #include <mpi.h>
 #include <omp.h>
 
+
+//OMPI_CC=/opt/homebrew/bin/gcc-15 mpicc -std=c11 -Wall -Wextra -O2 -isysroot "$(xcrun --sdk macosx --show-sdk-path)" -fopenmp main.c -o demo
+
 int main(int argc, char *argv[])
 {
     // MPI_Init(&argc, &argv);

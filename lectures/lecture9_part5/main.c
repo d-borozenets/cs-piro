@@ -26,18 +26,18 @@ int main(int argc, char *argv[]) {
     printf("Process %d: before exchange\n", rank);
     fflush(stdout);
 
-    MPI_Send(&send_value, 1, MPI_INT, partner, 0,
-             MPI_COMM_WORLD);
+    // MPI_Send(&send_value, 1, MPI_INT, partner, 0,
+    //          MPI_COMM_WORLD);
 
     // MPI_Ssend(&send_value, 1, MPI_INT, partner, 0,
     //          MPI_COMM_WORLD);
-
-    MPI_Recv(&recv_value, 1, MPI_INT, partner, 0,
-             MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    //
+    // MPI_Recv(&recv_value, 1, MPI_INT, partner, 0,
+    //          MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
 
     // if (rank == 0) {
-    //     MPI_Send(&send_value, 1, MPI_INT, partner, 0,
+    //     MPI_Ssend(&send_value, 1, MPI_INT, partner, 0,
     //              MPI_COMM_WORLD);
     //
     //     MPI_Recv(&recv_value, 1, MPI_INT, partner, 0,
@@ -46,18 +46,18 @@ int main(int argc, char *argv[]) {
     //     MPI_Recv(&recv_value, 1, MPI_INT, partner, 0,
     //              MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     //
-    //     MPI_Send(&send_value, 1, MPI_INT, partner, 0,
+    //     MPI_Ssend(&send_value, 1, MPI_INT, partner, 0,
     //              MPI_COMM_WORLD);
     // }
 
-    // MPI_Sendrecv(
-    //     &send_value, 1, MPI_INT, partner, 0,
-    //     &recv_value, 1, MPI_INT, partner, 0,
-    //     MPI_COMM_WORLD, MPI_STATUS_IGNORE
-    // );
-    //
-    // printf("Process %d: sent %d, received %d\n",
-    //        rank, send_value, recv_value);
+    MPI_Sendrecv(
+        &send_value, 1, MPI_INT, partner, 0,
+        &recv_value, 1, MPI_INT, partner, 0,
+        MPI_COMM_WORLD, MPI_STATUS_IGNORE
+    );
+
+    printf("Process %d: sent %d, received %d\n",
+           rank, send_value, recv_value);
 
     MPI_Finalize();
     return 0;

@@ -45,22 +45,22 @@ int main(int argc, char *argv[]) {
         local_values, BLOCK_SIZE, MPI_INT,
         0, MPI_COMM_WORLD
     );
-
+    //
     int local_sum = 0;
 
     for (int i = 0; i < BLOCK_SIZE; ++i) {
         local_values[i] *= factor;
         local_sum += local_values[i];
     }
-
+    //
     MPI_Gather(
         &local_sum, 1, MPI_INT,
         partial_sums, 1, MPI_INT,
         0, MPI_COMM_WORLD
     );
-
+    //
     if (rank == 0) {
-        printf("Partial sums:");
+        printf("Partial sums for %d ",rank);
 
         for (int i = 0; i < PROCESS_COUNT; ++i) {
             printf(" %d", partial_sums[i]);
@@ -68,18 +68,18 @@ int main(int argc, char *argv[]) {
 
         printf("\n");
     }
-
+    //
     int total_sum = 0;
 
     MPI_Reduce(
         &local_sum, &total_sum, 1, MPI_INT,
         MPI_SUM, 0, MPI_COMM_WORLD
     );
-
+    //
     if (rank == 0) {
         printf("Reduce result: %d\n", total_sum);
     }
-
+    //
     int global_sum = 0;
 
     MPI_Allreduce(
@@ -88,14 +88,15 @@ int main(int argc, char *argv[]) {
     );
 
     printf("Process %d: Allreduce result = %d\n", rank, global_sum);
+    //
+    // if (rank == 0) {
+    //     sleep(3);
+    // }
+    //
+    // MPI_Barrier(MPI_COMM_WORLD);
 
-    if (rank == 0) {
-        sleep(3);
-    }
-
-    MPI_Barrier(MPI_COMM_WORLD);
-
-    printf("Process %d: passed the barrier\n", rank);
+    // printf("Factor %d: \n", factor);
+    // printf("Process %d: passed the barrier\n", rank);
 
     MPI_Finalize();
     return 0;
