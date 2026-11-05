@@ -41,7 +41,10 @@ int main() {
   printf("Connected to server.\n");
 
   while ((num_read = read(STDIN_FILENO, buf, BUF_SIZE)) > 1) {
+    // Для підключеного TCP-сокета можна використати write() замість send() з прапорцями 0.
+    // write() працює з файловим дескриптором, який тут посилається на сокет.
     if (write(sfd, buf, num_read) != num_read) {
+    // if (send(sfd, buf, num_read, 0) != num_read) {
       handle_error("write");
     }
     printf("Just sent %zd bytes.\n", num_read);

@@ -4,5 +4,5 @@ find_package(MPI REQUIRED COMPONENTS C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(lecture9_part8 main.c)
+add_executable(lecture9_part8 hello_world.c)
 target_link_libraries(lecture9_part8 PRIVATE MPI::MPI_C)

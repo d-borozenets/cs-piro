@@ -17,14 +17,10 @@
     exit(EXIT_FAILURE);                                                        \
   } while (0)
 
-// Shared counters for: total # messages, and counter of clients (used for
-// assigning client IDs)
 int total_message_count = 0;
 int client_id_counter = 1;
 
-// Mutexs to protect above global state.
 pthread_mutex_t count_mutex = PTHREAD_MUTEX_INITIALIZER;
-pthread_mutex_t client_id_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 struct client_info {
   int cfd;
